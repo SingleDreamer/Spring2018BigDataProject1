@@ -16,7 +16,8 @@ for line in ppi_file:
 	#redis_db.set(line[0], line[1])
 
 
-	redis_db.append(line[0], line[1])
+	#redis_db.append(line[0], line[1])
+        redis_db.rpush(line[0], line[1])
 
 	#if line[0] not in redis_db.keys():
 	#	redis_db.set(line[0], line[1])

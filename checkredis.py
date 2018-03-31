@@ -8,6 +8,8 @@ os.system("redis-server")
 # create a connection to the localhost Redis server instance, by
 # default it runs on port 6379
 redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
+
+"""
 # see what keys are in Redis
 print redis_db.keys()
 # output for keys() should be an empty list "[]"
@@ -27,7 +29,12 @@ print redis_db.delete('twilio')
 # output is "1" because the command was successful
 print redis_db.get('twilio')
 # nothing is returned because the key and value no longer exist
+"""
+#for i in redis_db.keys():
+#    print i
+#    print redis_db.lrange(i, 0,-1)
 
+print redis_db.lrange(2, 0,-1)
 
 def is_redis_available():
     try:
