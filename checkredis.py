@@ -1,9 +1,9 @@
  
 
 import redis
-import os
+#import os
 
-os.system("redis-server")
+#os.system("redis-server")
 
 # create a connection to the localhost Redis server instance, by
 # default it runs on port 6379
@@ -34,8 +34,6 @@ print redis_db.get('twilio')
 #    print i
 #    print redis_db.lrange(i, 0,-1)
 
-print redis_db.lrange(2, 0,-1)
-
 def is_redis_available():
     try:
         redis_db.get(None)
@@ -43,5 +41,13 @@ def is_redis_available():
         return False
     return True
 
-print(is_redis_available())
+#print(is_redis_available())
+
+if (not is_redis_available()):
+    print "redis server is unavailable, please run redis-server"
+    exit()
+
+print redis_db.lrange(2, 0,-1)
+
+
     
