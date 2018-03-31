@@ -17,4 +17,4 @@ checking if large csv file can be ued with csvreader; speed seems acceptable. Ne
 
 ## testxml.py
 
-Still need to fucking deal with this. Can process XML files, but XML file so large that takes too much time. Need to decide what data to store, and with what format. 
+Still need to fucking deal with this. Can process XML files, but XML file so large that takes too much time. Need to decide what data to store, and with what format. Large XML file can't be uploaed bc too large, so make sure it is here locally before running this program. 
