@@ -24,7 +24,7 @@ for line in ppi_file:
 	#else:
 	#	redis_db.append(line[0], line[1])
 #redis_db.sort(sorted, groups = True)
-print(redis_db.get("7"))
+#print(redis_db.get("7"))
 #print(redis_db.hgetall("7"))
 
 

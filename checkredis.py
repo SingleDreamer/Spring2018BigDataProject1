@@ -1,9 +1,14 @@
  
 
 import redis
-#import os
+import os
 
-#os.system("redis-server")
+#os.system("./redis-stable/src/redis-server &")
+
+#import subprocess
+#proc = subprocess.Popen(["./redis-stable/src/redis-server"])
+
+#print "test"
 
 # create a connection to the localhost Redis server instance, by
 # default it runs on port 6379
@@ -48,6 +53,8 @@ if (not is_redis_available()):
     exit()
 
 print redis_db.lrange(2, 0,-1)
+
+#proc.terminate()
 
 
     
