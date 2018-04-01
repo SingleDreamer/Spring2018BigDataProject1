@@ -1,18 +1,49 @@
 import csv
-import sqlite3
-import numpy as np 
-"""
-connection = sqlite3.connect("largecsvtest.db")
-cursor = connection.cursor()
+import numpy as np
 
-sql_command = """ """
-DROP TABLE IF EXISTS patient;
-"""
+import pprint
+from pymongo import MongoClient
+client = MongoClient()
 
-i  = 0
-# import patient info from patients.csv
-with open('ROSMAP_RNASeq_entrez.csv', 'rb') as csvfile:
+db = client.test
+
+if(not "mongo_rosmap" in db.collection_names()):
+    rosmap = db.mongo_rosmap
+    rosmap.drop()
+
+    csvfile = open('ROSMAP_RNASeq_entrez.csv', 'rb')
     reader = csv.reader(csvfile)
+
+    columns = ["patient_id", "diagnosis"]
+    for i in next(reader)[2:]:
+        columns.append(i)
+
+        for row in reader:
+            entry = {}
+            for c, i in zip(columns,row) :
+                entry [c] = i
+            rosmap.insert_one(entry)
+            #print 1
+
+    csvfile.close()
+
+else:
+    rosmap = db.mongo_rosmap
+    values = []
+    for entry in (rosmap.find({'diagnosis':'3'})):
+        values.append(entry['1'])
+    for entry in (rosmap.find({'diagnosis':'2'})):
+        values.append(entry['1'])
+    values = np.array(map(float, values))
+    print np.mean(values)
+    print np.std(values)
+    
+        #print "hi"
+#for entry in rosmap.find():
+#    pprint.pprint(entry)
+
+"""
+i  = 0
     next(reader)
     #for row in reader:
         #print row
@@ -22,5 +53,6 @@ with open('ROSMAP_RNASeq_entrez.csv', 'rb') as csvfile:
         print i
     print np.mean(a)
     print np.std(a)
-    
-csvfile.close()
+    """
+
+
