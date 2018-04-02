@@ -1,6 +1,6 @@
 import sqlite3
 import csv
-connection = sqlite3.connect("patients.db")
+connection = sqlite3.connect("adk.db")
 cursor = connection.cursor()
 
 # create patient table

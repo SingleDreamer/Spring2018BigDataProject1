@@ -34,13 +34,26 @@ def reset():
 
     csvfile.close()
 
-def run():
+def run(diagnosis, gene):
     rosmap = db.mongo_rosmap
     values = []
-    for entry in (rosmap.find({'diagnosis':'4'})):
-        values.append(entry['1'])
-    for entry in (rosmap.find({'diagnosis':'5'})):
-        values.append(entry['1'])
+    if (diagnosis == "AD"):
+        for entry in (rosmap.find({'diagnosis':'4'})):
+            values.append(entry[gene])
+        for entry in (rosmap.find({'diagnosis':'5'})):
+            values.append(entry[gene])
+    elif (diagnosis == "MCI"):
+        for entry in (rosmap.find({'diagnosis':'2'})):
+            values.append(entry[gene])
+        for entry in (rosmap.find({'diagnosis':'3'})):
+            values.append(entry[gene])
+    elif (diagnosis == "NCI"):
+         for entry in (rosmap.find({'diagnosis':'1'})):
+            values.append(entry[gene])
+    else:
+        print "invalid"
+        return     
+            
     values = np.array(map(float, values))
     print np.sum(values)
     print np.mean(values)
@@ -54,7 +67,15 @@ input = raw_input("input: ")
 if (input == "reset"):
     reset()
 else:
-    run()
+    #diagnosis = raw_input("diagnosis: ")
+    gene = raw_input("gene: ")
+    print "AD"
+    run("AD", gene)
+    print "MCI"
+    run("MCI", gene)
+    print "NCI"
+    run("NCI", gene)
+
 
 map = Code("function () {"
            " emit (this.'1'); "
