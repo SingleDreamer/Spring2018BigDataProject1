@@ -20,7 +20,7 @@ h: list commands
 \n\n """
 
 # commands to run servers
-mongod = ["./mongodb-osx-x86_64-3.6.3/bin/mongod"]
+mongod = ["./mongodb-osx-x86_64-3.6.3/bin/mongod", "-dbpath", "data/mongo"]
 redisserver = ["./redis-stable/src/redis-server"]
 
 # try and catch
@@ -31,7 +31,7 @@ subprocess.Popen(redisserver, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
 
 # sqlite3 variables
-connection = sqlite3.connect("adk.db")
+connection = sqlite3.connect("data/sql/adk.db")
 cursor = connection.cursor()
 
 # pymongo variables
@@ -46,14 +46,26 @@ def is_redis_available():
         return False
     return True
 
+def is_monog_available():
+    try:
+        client.server_info()
+    except pymongo.errors.ServerSelectionTimeoutError as err:
+        return False
+    return True
+
+
+
 # reset PPI.csv
 def reset_redis():
     if (not is_redis_available()):
         print "redis server is unavailable, please run redis-server\n"
         return
+    redis_db.flushdb()
     ppi_file = csv.reader(open("PPI.csv"))
     for line in ppi_file:
         redis_db.rpush(line[0], line[1])
+    print "reset redis"
+
 
 
 # reset patients.csv and entrez_ids_genesymbol.csv   
@@ -86,7 +98,7 @@ def reset_sql():
                 gender = row[2],
                 education = row[3],
             )
-        cursor.execute(sql_command)
+            cursor.execute(sql_command)
         
     connection.commit()
     csvfile.close()
@@ -117,10 +129,12 @@ def reset_sql():
                 gene_symbol = row[1],
                 gene_name = row[2]
             )
-        cursor.execute(sql_command)
+            cursor.execute(sql_command)
         
     connection.commit()
     csvfile.close()
+    print "reset sql"
+
 
 def reset_mongo():
     rosmap = db.mongo_rosmap
@@ -142,6 +156,8 @@ def reset_mongo():
         rosmap.insert_one(entry)
 
     csvfile.close()
+    print "reset mongo"
+
     
 def reset():
     reset_redis()
@@ -188,16 +204,17 @@ def run_c2(diagnosis, gene):
         return
     values = np.array(map(float, values))
     #print np.sum(values)
+    print diagnosis
     print "mean: " + str( np.mean(values) )
     print "std: " + str( np.std(values) )
             
 def c2():
     gene = raw_input("gene: ")
-    print "AD"
+    #print "AD"
     run_c2("AD", gene)
-    print "MCI"
+    #print "MCI"
     run_c2("MCI", gene)
-    print "NCI"
+    #print "NCI"
     run_c2("NCI", gene)
             
 def c3():
@@ -246,6 +263,12 @@ while (command != "0"):
         c4()
     elif (command == "r"):
         reset()
+    elif (command == "rr"):
+        reset_redis()
+    elif (command == "rs"):
+        reset_sql()
+    elif (command == "rm"):
+        reset_mongo()
     elif (command == "h"):
         print(start)
     else:

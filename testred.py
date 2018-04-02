@@ -4,7 +4,7 @@ import os
 import csv
 
 redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
-
+redis_db.flushdb()
 #redis_db.set("hi", "there")
 #print(redis_db.get("hi"))
 
