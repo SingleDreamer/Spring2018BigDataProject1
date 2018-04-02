@@ -1,5 +1,17 @@
 # Spring2018BigDataProject1
 
+## notes and dependencies fuuuuuu
+- sqlite3
+- numpy
+- pymongo
+- django?? not set up yet
+- redis?? but downloaded so idk
+- needs stress tetsitn gomg 
+
+## adkbase.py
+
+main running program, will tell computer to run servers, just run adkbase.py. also will kill servers at end so yearh
+
 ## sqltest.py
 
 uses patient.db, can run by itself without servers. will check if data has already been stored, and upload thee newestdata(double check if this is true?). Stores data for entrez_ids_genesybmol.csv and patiensts.csv?
