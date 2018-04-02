@@ -7,6 +7,7 @@
 - django?? not set up yet
 - redis?? but downloaded so idk
 - needs stress tetsitn gomg 
+- need to use mapreduce in the mongo large csv part c2(???) part too workon that
 
 ## adkbase.py
 
