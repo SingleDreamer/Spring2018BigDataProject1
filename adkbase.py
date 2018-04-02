@@ -61,7 +61,7 @@ def reset_redis():
         print "redis server is unavailable, please run redis-server\n"
         return
     redis_db.flushdb()
-    ppi_file = csv.reader(open("PPI.csv"))
+    ppi_file = csv.reader(open("raw_data/PPI.csv"))
     for line in ppi_file:
         redis_db.rpush(line[0], line[1])
     print "reset redis"
@@ -87,7 +87,7 @@ def reset_sql():
     cursor.execute(sql_command)
     
     # import patient info from patients.csv
-    with open('patients.csv', 'rb') as csvfile:
+    with open('raw_data/patients.csv', 'rb') as csvfile:
         reader = csv.reader(csvfile)
         next(reader)
         for row in reader:
@@ -119,7 +119,7 @@ def reset_sql():
     cursor.execute(sql_command)
         
         #import patient info from entrez_ids_genesymbol.csv
-    with open('entrez_ids_genesymbol.csv', 'rb') as csvfile:
+    with open('raw_data/entrez_ids_genesymbol.csv', 'rb') as csvfile:
         reader = csv.reader(csvfile)
         next(reader)
         for row in reader:
@@ -140,7 +140,7 @@ def reset_mongo():
     rosmap = db.mongo_rosmap
     rosmap.drop()
 
-    csvfile = open('ROSMAP_RNASeq_entrez.csv', 'rb')
+    csvfile = open('raw_data/ROSMAP_RNASeq_entrez.csv', 'rb')
     reader = csv.reader(csvfile)
 
     columns = ["patient_id", "diagnosis"]
