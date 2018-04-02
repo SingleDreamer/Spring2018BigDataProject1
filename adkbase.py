@@ -21,7 +21,7 @@ h: list commands
 
 # commands to run servers
 mongod = ["./mongodb-osx-x86_64-3.6.3/bin/mongod", "-dbpath", "data/mongo"]
-redisserver = ["./redis-stable/src/redis-server"]
+redisserver = ["./redis-stable/src/redis-server", "redis-stable/redis.conf"]
 
 # try and catch
 subprocess.Popen(mongod, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
