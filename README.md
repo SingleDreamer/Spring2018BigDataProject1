@@ -9,19 +9,28 @@
 
 ## How to Use
 
-Commands: \n\n
+Commands: 
 
-1: Given a gene, find all of its n-order interacting genes\n
-2: Given a gene, find mean and std of gene expression values for AD/MCI/NCI, respectively\n
-3: Given a gene, find all other information associated with this gene.\n
-4: Given a patient id, find all patient information (age, gender, education etc.)\n
+1: Given a gene, find all of its n-order interacting genes
+
+2: Given a gene, find mean and std of gene expression values for AD/MCI/NCI, respectively
+
+3: Given a gene, find all other information associated with this gene.
+
+4: Given a patient id, find all patient information (age, gender, education etc.)
+
 r: reset databases
-\t rs: reset sql only
-\t rm: reset mongodb only
-\t rr: reset redis only \n
-h: list commands\n
+
+   rs: reset sql only
+
+   rm: reset mongodb only
+
+   rr: reset redis only 
+
+h: list commands
+
 e: exit
-\n\
+
 
 ## dependencies (use virtualenv) 
 - sqlite3
