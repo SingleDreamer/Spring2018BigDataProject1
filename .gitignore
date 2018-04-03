@@ -4,5 +4,8 @@
 *#
 *.zip
 uniprot-human.xml
-ENV/
 data/
+data/mongo
+data/sql
+data/redis
+ENV/
