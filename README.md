@@ -3,7 +3,11 @@
 
 ## How to Run
 
-`./source ENV/bin/activate`
+Activate the virtualenv. 
+
+`source ENV/bin/activate`
+
+Run the main program
 
 `python adkbase.py`
 
@@ -18,6 +22,8 @@ Commands:
 3: Given a gene, find all other information associated with this gene.
 
 4: Given a patient id, find all patient information (age, gender, education etc.)
+
+If no data is showing or databases have not been set up: 
 
 r: reset databases
 
