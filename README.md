@@ -1,13 +1,41 @@
-# Spring2018BigDataProject1
+# AD Knowledge Base (Spring2018BigDataProject1)
+### Eunice Hew and Jessica Ng
 
-## notes and dependencies fuuuuuu
+## How to Run
+
+`./source ENV/bin/activate`
+
+`python adkbase.py`
+
+## How to Use
+
+Commands: \n\n
+
+1: Given a gene, find all of its n-order interacting genes\n
+2: Given a gene, find mean and std of gene expression values for AD/MCI/NCI, respectively\n
+3: Given a gene, find all other information associated with this gene.\n
+4: Given a patient id, find all patient information (age, gender, education etc.)\n
+r: reset databases
+\t rs: reset sql only
+\t rm: reset mongodb only
+\t rr: reset redis only \n
+h: list commands\n
+e: exit
+\n\
+
+## dependencies (use virtualenv) 
 - sqlite3
 - numpy
 - pymongo
+- redis
+
+## notes
 - django?? not set up yet
-- redis?? but downloaded so idk
 - needs stress tetsitn gomg 
 - need to use mapreduce in the mongo large csv part c2(???) part too workon that
+
+
+# Testing Notes (please ignore)
 
 ## adkbase.py
 
