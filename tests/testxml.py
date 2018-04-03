@@ -7,7 +7,7 @@
 
 
 import xml.etree.ElementTree as etree
-for event, elem in etree.iterparse("uniprot-human.xml", events=('end',)):
+for event, elem in etree.iterparse("../raw_data/uniprot-human.xml", events=('end',)):
   #print "new\n"
   #print event, elem
   #if event == 'end':
