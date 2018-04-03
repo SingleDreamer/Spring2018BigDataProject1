@@ -3,9 +3,12 @@
 
 ## How to Run
 
-Activate the virtualenv. 
+Create and activate the virtualenv. 
 
+`virtualenv --python=/usr/bin/python 2.7 ENV`
 `source ENV/bin/activate`
+
+Make sure you have all the dependecies (see belwo)
 
 Run the main program
 
