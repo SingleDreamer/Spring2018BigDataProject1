@@ -4,3 +4,5 @@
 *#
 *.zip
 uniprot-human.xml
+ENV/
+data/

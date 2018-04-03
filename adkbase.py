@@ -5,18 +5,22 @@ import os
 import subprocess
 import numpy as np
 import pprint
+#import pymongo
 from pymongo import MongoClient
 
 start = """
 Welcome to AD Knowledge Base.\n
 Please enter a command.\n
-0: exit\n
 1: Given a gene, find all of its n-order interacting genes\n
 2: Given a gene, find mean and std of gene expression values for AD/MCI/NCI, respectively\n
 3: Given a gene, find all other information associated with this gene.\n
 4: Given a patient id, find all patient information (age, gender, education etc.)\n
-r: reset databases\n
-h: list commands
+r: reset databases
+\t rs: reset sql only
+\t rm: reset mongodb only
+\t rr: reset redis only \n
+h: list commands\n
+e: exit
 \n\n """
 
 # commands to run servers
@@ -35,6 +39,8 @@ connection = sqlite3.connect("data/sql/adk.db")
 cursor = connection.cursor()
 
 # pymongo variables
+maxSevSelDelay = 1
+#client = MongoClient("someInvalidURIOrNonExistantHost", serverSelectionTimeoutMS=maxSevSelDelay)
 client = MongoClient()
 db = client.test
 rosmap = db.mongo_rosmap
@@ -46,13 +52,14 @@ def is_redis_available():
         return False
     return True
 
-def is_monog_available():
+"""
+def is_mongo_available():
     try:
         client.server_info()
     except pymongo.errors.ServerSelectionTimeoutError as err:
         return False
     return True
-
+"""
 
 
 # reset PPI.csv
@@ -137,6 +144,11 @@ def reset_sql():
 
 
 def reset_mongo():
+    """
+    if (not is_mongo_available()):
+        print "mongo server is unavailable, please run mongod\n"
+        return
+    """
     rosmap = db.mongo_rosmap
     rosmap.drop()
 
@@ -252,7 +264,7 @@ def c4():
 print (start)
 command = raw_input( "\n> ")
     
-while (command != "0"):
+while (command != "e"):
     if (command == "1"):
         c1()
     elif (command == "2"):
