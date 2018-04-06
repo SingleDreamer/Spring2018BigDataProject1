@@ -1,7 +1,0 @@
-*.tgz
-*.gz
-*~
-*#
-*.zip
-uniprot-human.xml
-ENV/

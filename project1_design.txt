@@ -1,5 +1,0 @@
-- Design Diagram
-
-- All queries
-
-- Potential Improvements
