@@ -1,0 +1,43 @@
+AD Knowledge Base (Spring2018BigDataProject1)
+Eunice Hew and Jessica Ng
+
+- Design Diagram
+
+For the patient information and gene information, we used sqlite3. 
+
+For the gene expression data (entrez_ids_genesymbol.csv), we used MongoDB. 
+
+For the n-order interacting genes information, we used Redis. 
+
+- All queries
+
+Commands: 
+
+1: Given a gene, find all of its n-order interacting genes
+
+2: Given a gene, find mean and std of gene expression values for AD/MCI/NCI, respectively
+
+3: Given a gene, find all other information associated with this gene.
+
+4: Given a patient id, find all patient information (age, gender, education etc.)
+
+If no data is showing or databases have not been set up: 
+
+r: reset databases
+
+   rs: reset sql only
+
+   rm: reset mongodb only
+
+   rr: reset redis only 
+
+h: list commands
+
+e: exit
+
+
+- Potential Improvements
+
+Maybe use mapreduce with pymongo, to speed up the calculation. Alternatively, we could calculate all the means and standard deviations and everything beforehand, and immediately access the values. However, this might cause the setup speed to increase. 
+
+Specialized searches, such as searching for patient based on age or education, or list all values for the expression. 
