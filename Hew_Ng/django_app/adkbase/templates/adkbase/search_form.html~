@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    
+    <title>AD Knowledge Base</title>
+  </head>
+<body>
+    <form action="/search/" method="get">
+      <select class="text_select" id="c" name="c">
+	<option value="c">-command-</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+      </select>
+      <p/>
+      <div id="ifC" style="display:none">
+	<span id="tag"></span>
+	<p />
+        <input type="text" id="i" name="i">
+        <input type="submit" value="Search">
+      </div>
+    </form>
+</body>
+</html>
+
+<script type="text/javascript">
+var command = document.getElementById('c');
+var tag = document.getElementById('tag');
+var input_field = document.getElementById('ifC');
+
+
+command.onchange = function() {
+if (command.value == "c") {
+input_field.style.display = 'none'
+}
+else if (command.value == "4") {
+tag.innerHTML = "Enter patient ID"
+input_field.style.display = 'block'
+}
+else {
+tag.innerHTML = "Enter entrez_ID"
+input_field.style.display = 'block'
+}
+};
+
+
+
+</script>
